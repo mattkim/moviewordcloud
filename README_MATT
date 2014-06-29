@@ -1,0 +1,2 @@
+#Run before running website locally
+postgres -D /usr/local/var/postgres
