@@ -4,6 +4,21 @@ postgres -D /usr/local/var/postgres
 #Next style up my blog
 #Then bootstrap app with devise
 #Learn more active record to add users and such
+#Add creation / last updated date times to posts
+# Auto-link feature
+# Experiment with hooking up my blog posts automatically to other blog sites.
+# Add google analytics
+
+# Movie referrals - fandango/netflix
+# Google Ads
+# Movie recommendations
+http://www.google.com/adsense/start/how-it-works.html#sourceid=aso&subid=ww-ns-g-awhp_nelsontest3_nel_p
+http://railsapps.github.io/rails-google-analytics.html
+
+# Do thingies like marvel-izer analysis
+
 
 #What major features need to be built?
 1. Support embedding images neatly into blog post (use tumblr method)
+
+#See if andrew wants to update the blog
