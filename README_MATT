@@ -1,2 +1,9 @@
 #Run before running website locally
 postgres -D /usr/local/var/postgres
+
+#Next style up my blog
+#Then bootstrap app with devise
+#Learn more active record to add users and such
+
+#What major features need to be built?
+1. Support embedding images neatly into blog post (use tumblr method)
