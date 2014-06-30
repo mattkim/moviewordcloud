@@ -12,6 +12,7 @@ postgres -D /usr/local/var/postgres
 # Movie referrals - fandango/netflix
 # Google Ads
 # Movie recommendations
+# Amazon referrals (dvd's/aiv) https://affiliate-program.amazon.com/gp/associates/join/landing/main.html
 http://www.google.com/adsense/start/how-it-works.html#sourceid=aso&subid=ww-ns-g-awhp_nelsontest3_nel_p
 http://railsapps.github.io/rails-google-analytics.html
 
