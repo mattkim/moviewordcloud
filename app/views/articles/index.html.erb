@@ -1,3 +1,104 @@
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="nav-bar right">
+       <ul class="button-group">
+       <!--
+         <li><a href="#" class="button">Link 1</a></li>
+         <li><a href="#" class="button">Link 2</a></li>
+         <li><a href="#" class="button">Link 3</a></li>
+         <li><a href="#" class="button">Link 4</a></li>
+        -->
+        </ul>
+      </div>
+      <h1>Blog <small>This is my blog. It's awesome.</small></h1>
+      <hr/>
+    </div>
+  </div>
+ 
+   
+ 
+ 
+   
+ 
+  <div class="row">
+ 
+     
+    <div class="large-9 columns" role="content">
+      <!-- Auto populate these articles -->
+      <% @articles.each do |article| %>
+        <article>
+        <h3><%= link_to article.title, article_path(article) %></h3>
+        <div class="row">
+          <div class="large-9 columns">
+            <p><%= article.text %></p>
+          </div>
+        </div>
+
+        <%= link_to 'Edit', edit_article_path(article) %> |
+        <%= link_to 'Destroy', article_path(article),
+                            method: :delete, data: { confirm: 'Are you sure?' } %>
+        </article>
+        </hr>
+      <% end %>
+    </div>
+ 
+     
+ 
+ 
+     
+    <!--
+    <aside class="large-3 columns">
+    
+      <h5>Categories</h5>
+      <ul class="side-nav">
+        <li><a href="#">News</a></li>
+        <li><a href="#">Code</a></li>
+        <li><a href="#">Design</a></li>
+        <li><a href="#">Fun</a></li>
+        <li><a href="#">Weasels</a></li>
+      </ul>
+ 
+      <div class="panel">
+        <h5>Featured</h5>
+        <p>Pork drumstick turkey fugiat. Tri-tip elit turducken pork chop in. Swine short ribs meatball irure bacon nulla pork belly cupidatat meatloaf cow.</p>
+        <a href="#">Read More →</a>
+      </div>
+    
+    </aside>
+    -->
+     
+  </div>
+ 
+   
+ 
+ 
+   
+ 
+  <footer class="row">
+    <div class="large-12 columns">
+      <hr/>
+      <div class="row">
+        <div class="large-6 columns">
+          <p>© Copyright Matt Kim</p>
+        </div>
+        <div class="large-6 columns">
+          <ul class="inline-list right">
+            <li><%= link_to 'New article', new_article_path %></li>
+            <!--
+            <li><a href="#">Link 1</a></li>
+            <li><a href="#">Link 2</a></li>
+            <li><a href="#">Link 3</a></li>
+            <li><a href="#">Link 4</a></li>
+            -->
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+<!--
 <h1>Listing articles</h1>
  
 <%= link_to 'New article', new_article_path %>
@@ -12,15 +113,16 @@
  
   <% @articles.each do |article| %>
     <tr>
-      <!-- I have a feeling i can use article_path but it needs to jive with the :id -->
+      #I have a feeling i can use article_path but it needs to jive with the :id
       <td><%= link_to article.id, article_path(article.id.to_s) %></td>
       <td><%= article.title %></td>
       <td><%= article.text %></td>
       <td><%= link_to 'Show', article_path(article) %></td>
       <td><%= link_to 'Edit', edit_article_path(article) %></td>
-      <!-- Note that here we pass in the method type -->
+      #Note that here we pass in the method type
       <td><%= link_to 'Destroy', article_path(article),
                           method: :delete, data: { confirm: 'Are you sure?' } %></td>
     </tr>
   <% end %>
 </table>
+-->
