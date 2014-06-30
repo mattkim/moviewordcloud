@@ -123,3 +123,33 @@
       </div>
     </div>
   </footer>
+
+
+  <!--
+<h1>Listing articles</h1>
+ 
+<%= link_to 'New article', new_article_path %>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Text</th>
+    <th colspan="3"></th>
+  </tr>
+ 
+  <% @articles.each do |article| %>
+    <tr>
+      #I have a feeling i can use article_path but it needs to jive with the :id
+      <td><%= link_to article.id, article_path(article.id.to_s) %></td>
+      <td><%= article.title %></td>
+      <td><%= article.text %></td>
+      <td><%= link_to 'Show', article_path(article) %></td>
+      <td><%= link_to 'Edit', edit_article_path(article) %></td>
+      #Note that here we pass in the method type
+      <td><%= link_to 'Destroy', article_path(article),
+                          method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>
+-->
