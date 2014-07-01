@@ -35,6 +35,8 @@ Rails.application.configure do
   # Version of your assets, change this if you want to expire all your assets.
   config.assets.version = '1.0'
 
+  # where the fonts exist
+  config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
   # Precompiling assets to see if they work in heroku
   config.assets.precompile += %w(.svg .eot .woff .ttf)
 
