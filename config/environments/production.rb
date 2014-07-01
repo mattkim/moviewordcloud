@@ -35,11 +35,10 @@ Rails.application.configure do
   # Version of your assets, change this if you want to expire all your assets.
   config.assets.version = '1.0'
 
-  config.assets.enabled = true
   # where the fonts exist
   config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
   # Precompiling assets to see if they work in heroku
-  config.assets.precompile += %w(.svg .eot .woff .ttf)
+  config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
