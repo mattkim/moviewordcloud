@@ -14,9 +14,21 @@
   <body>
     <div clas="row">
     <div class="small-9 large-9 small-centered large-centered columns">
-    <%= yield %>
-    <%= javascript_include_tag "application" %>
-    <%= render 'layouts/googleanalytics' %>
+      <div class="row">
+        <!-- <div class="small-12 large-12 columns"> -->
+          <div class="nav-bar right">
+           <ul class="button-group">
+             <li><a href="#" class="button small radius">login <i class="fi-power large"></i></a></li>
+            </ul>
+          </div>
+          <h2>Matt Kim Blog <small></small></h2>
+          <hr/>
+        <!-- </div> -->
+      </div>
+
+      <%= yield %>
+      <%= javascript_include_tag "application" %>
+      <%= render 'layouts/googleanalytics' %>
     </div>
     </div>
   </body>
