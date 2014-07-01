@@ -1,12 +1,10 @@
-<div clas="row">
-<div class="large-9 large-centered columns">
 <h3><%= @article.title %></h3>
 <p><%= @article.text.html_safe %></p>
   <div class="row">
   <%= link_to 'Back', articles_path %>
   | <%= link_to 'Edit', edit_article_path(@article) %>
   </div>
-  
+
 	<div class="row">
 		<div class="large-6 large-centered columns">
 
@@ -17,6 +15,3 @@
 		<%= render @article.comments %>
 		</div>
 	</div>
-
-</div>
-</div>

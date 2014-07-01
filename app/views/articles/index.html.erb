@@ -1,5 +1,5 @@
   <div class="row">
-    <div class="large-9 large-centered columns">
+    <div class="small-12 large-12 columns">
       <div class="nav-bar right">
        <ul class="button-group">
        <!--
@@ -16,13 +16,13 @@
   </div>
 
   <div class="row">
-      <div class="large-9 large-centered columns" role="content">
+      <div class="small-12 large-12 columns" role="content">
       <!-- Auto populate these articles -->
       <% @articles.each do |article| %>
         <article>
         <h3><%= link_to article.title, article_path(article) %></h3>
         <div class="row">
-          <div class="large-9 columns">
+          <div class="small-12 large-12 columns">
             <!-- Note that by default Rails will auto escape string here -->
             <p><%= article.text.html_safe %></p>
           </div>
@@ -38,13 +38,13 @@
   </div>
 
   <footer class="row">
-    <div class="large-9 large-centered columns">
+    <div class="small-12 large-12 columns">
       <hr/>
       <div class="row">
-        <div class="large-6 columns">
+        <div class="small-6 large-6 columns">
           <p>© Copyright Matt Kim</p>
         </div>
-        <div class="large-6 columns">
+        <div class="small-6 large-6 columns">
           <ul class="inline-list right">
             <li><%= link_to 'New article', new_article_path %></li>
           </ul>

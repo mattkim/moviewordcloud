@@ -12,9 +12,12 @@
   </head>
 
   <body>
-
+    <div clas="row">
+    <div class="small-9 large-9 small-centered large-centered columns">
     <%= yield %>
     <%= javascript_include_tag "application" %>
     <%= render 'layouts/googleanalytics' %>
+    </div>
+    </div>
   </body>
 </html>
