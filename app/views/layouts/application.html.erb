@@ -11,19 +11,17 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
+  <body style="background-color:#F0F8FF">
     <div clas="row">
-    <div class="small-9 large-9 small-centered large-centered columns">
-      <div class="row">
-        <!-- <div class="small-12 large-12 columns"> -->
+    <div class="small-12 medium-8 large-6 small-centered medium-centered large-centered columns" style="background-color:white; max-width:600px;">
+      <div class="row" style="background-color:white">
           <div class="nav-bar right">
-           <ul class="button-group">
-             <li><a href="#" class="button small radius">login <i class="fi-power large"></i></a></li>
+           <ul class="small-block-grid-2 medium-block-grid-2 large-block-grid-2">
+             <li><h2><a href="/" ><i class="fi-home"></i></a></h2></li>
+             <li><h2><a href="#" ><i class="fi-power"></i></a></h2></li>
             </ul>
           </div>
-          <h2>Matt Kim Blog <small></small></h2>
-          <hr/>
-        <!-- </div> -->
+          <h2>Matt Kim Blog <img src="https://fbcdn-photos-d-a.akamaihd.net/hphotos-ak-xpf1/v/t1.0-0/10442348_10152577711690844_5859271812230606479_s.jpg?oh=d46ef1a0fee9a9a79800215d6772954f&oe=542B02FF&__gda__=1410947200_87f74680046cc6f0b2f709a3c6df7ee5" style="height:50px"/></h2>
       </div>
 
       <%= yield %>
