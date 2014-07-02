@@ -1,27 +1,27 @@
-<div class="row">
+<table>
+  <tbody>
     <!-- Auto populate these articles -->
     <% @articles.each do |article| %>
+    <tr><td>
       <article>
-      <h3><%= link_to article.title, article_path(article) %></h3>
-      <div class="row">
-        <div class="small-12 large-12 columns">
+      <p>
+      <strong><%= link_to article.title, article_path(article) %></strong>
           <!-- Note that by default Rails will auto escape string here -->
-          <p><%= article.text.html_safe %></p>
-        </div>
-      </div>
-
-      <%= link_to pluralize(article.comments.count,'Comment'), article_path(article) %> |
+      <br/><%= article.text.html_safe %>
+      <br/><span class="right"><%= link_to article.comments.count, article_path(article) %> <i class="fi-comment"></i></span> 
+      <!--|
       <%= link_to 'Edit', edit_article_path(article) %> |
       <%= link_to 'Destroy', article_path(article),
                           method: :delete, data: { confirm: 'Are you sure?' } %>
+                          -->
+      </p>
       </article>
-      <hr/>
+    </td></tr>
     <% end %>
-</div>
+  </tbody>
+</table>
 
 <footer class="row">
-  
-    <hr/>
     <div class="row">
       <div class="small-6 large-6 columns">
         <p>© Copyright Matt Kim</p>

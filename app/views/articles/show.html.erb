@@ -1,6 +1,8 @@
+<table><tr><td>
 <h3><%= @article.title %></h3>
 <p><%= @article.text.html_safe %></p>
-<hr/>
+</td></tr></table>
+
 <div class="row">
 <%= link_to 'Back', articles_path %>
 | <%= link_to 'Edit', edit_article_path(@article) %>
