@@ -28,10 +28,10 @@ class WordcloudController < ApplicationController
   	  reviews = JSON.parse(callRottenTomato(reviews_url))
 
       # Compile all comments together
-  	  quotes = ""
-  	  reviews["reviews"].each do |review|
-  	  	quotes += review["quote"] + " "
-  	  end
+  	  quotes = "test test test1 test1 test2"
+  	  #reviews["reviews"].each do |review|
+  	  #	quotes += review["quote"] + " "
+  	  #end
 
   	  critics_score = movie["ratings"]["critics_score"]
 
