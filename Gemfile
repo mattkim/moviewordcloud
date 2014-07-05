@@ -45,3 +45,5 @@ gem 'rails_12factor', group: :production
 # Using zurb foundation as css tool-kit
 gem 'foundation-rails'
 gem 'foundation-icons-sass-rails'
+
+gem "jqcloud-rails"
