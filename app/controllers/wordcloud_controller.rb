@@ -29,10 +29,10 @@ class WordcloudController < ApplicationController
 
       # Compile all comments together
   	  quotes = ""
-  	  if !reviews["reviews"]?
+  	  if reviews["reviews"]
   	    reviews["reviews"].each do |review|
-  	  	quotes += review["quote"] + " "
-  	  
+  	      quotes += review["quote"] + " "
+  	    end
   	  end
 
   	  critics_score = movie["ratings"]["critics_score"]
