@@ -6,6 +6,7 @@ boring_words = {
 // Manually listed words
 "and":true,"of":true,"the":true,"if":true,"on":true,"a":true,"is":true,"in":true,"i":true,"with":true,"as":true,"to":true,"has":true,"just":true,
 "are":true,"by":true,"so":true,"can":true,"but":true,"could":true,"film":true,"movie":true,"for":true,"have":true,"while":true,"at":true,"be":true,"into":true,
+"than":true,"from":true,"an":true,
 // Most common meaningless words
 "all":true,
 "another":true,
@@ -252,7 +253,10 @@ function displayMovies() {
     console.log(movie);
     quotes = movie["quotes"];
 
-    $(movie["title"].split(" ")).each(function(index,value){
+    var title_words = movie["title"].split(" ");
+    title_words = stripPuncts(title_words);
+    console.log(title_words);
+    $(title_words).each(function(index,value){
         extra_boring_words[value.toLowerCase()] = true;
     });
 
@@ -302,5 +306,21 @@ function generateWordArray(words, extra_boring_words) {
   	}
   }
   return word_array;
+}
+
+// Strip punctuations
+function stripPuncts(words) {
+  var results = []
+  $(words).each(function(index,word) {
+    // make sure we remove punctuations
+    $(punct_marks).each(function(index, punct) {
+      //var re = new RegExp(punct, 'g');
+      //TODO: make this a replace all
+      word = word.replace(punct,"");
+    });
+    results.push(word);
+  });
+
+  return results;
 }
 
