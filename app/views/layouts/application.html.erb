@@ -9,6 +9,7 @@
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
+    <%= javascript_include_tag "application" %>
   </head>
 
   <body style="background-color:#F0F8FF">
@@ -26,9 +27,10 @@
       </div>
 
       <%= yield %>
-      <%= javascript_include_tag "application" %>
-      <%= render 'layouts/googleanalytics' %>
+      
     </div>
     </div>
+
+    <%= render 'layouts/googleanalytics' %>
   </body>
 </html>

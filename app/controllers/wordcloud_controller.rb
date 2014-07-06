@@ -3,6 +3,7 @@ require 'json'
 
 class WordcloudController < ApplicationController
   def index
+    @movies = getMovies()
   end
 
   def callRottenTomato(url)
@@ -12,14 +13,14 @@ class WordcloudController < ApplicationController
     return res.body
   end
 
-  def test
+  def getMovies
   	box_office_movies_uri = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=crwupvtm57dx5nu38f9nhyef"
     reviews_template = "http://api.rottentomatoes.com/api/public/v1.0/movies/%s/reviews.json?apikey=crwupvtm57dx5nu38f9nhyef"
 
   	box_office_movies = JSON.parse(callRottenTomato(box_office_movies_uri))
 
     # Create movies struct  	
-  	@movies = Hash.new
+  	movies = Hash.new
   	box_office_movies["movies"].each do |movie|
   	  id = movie["id"]
   	  title = movie["title"]
@@ -38,10 +39,10 @@ class WordcloudController < ApplicationController
   	  critics_score = movie["ratings"]["critics_score"]
 
       # Finalize struct
-  	  @movies[id] = {"id" => id, "title" => title, "quotes" => quotes, "critics_score" => critics_score}
+  	  movies[id] = {"id" => id, "title" => title, "quotes" => quotes, "critics_score" => critics_score}
   	end
 
-  	render json: @movies
+  	return movies.to_json
   end
 
 end
