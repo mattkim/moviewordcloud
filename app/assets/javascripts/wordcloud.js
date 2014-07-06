@@ -265,7 +265,7 @@ function displayMovies() {
 
     // Create div for each movie
     var newid = "movie" + movie["id"];
-    $("#example").append("<div><h2>"+movie["title"]+"</h2> <h3>Critics Score: "+movie["critics_score"]+"</h3></div><div id='" + newid + "' style='height:300px'></div>");
+    $("#example").append("<div><h3>"+movie["title"]+", Critics Score: "+movie["critics_score"]+"<br/><img src='"+movie["poster_detailed"]+"'></img></h3></div><div id='" + newid + "' style='height:300px'></div>");
 
     // Create word cloud for each movie
     $("#" + newid).jQCloud(word_array);

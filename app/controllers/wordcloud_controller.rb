@@ -25,8 +25,12 @@ class WordcloudController < ApplicationController
   	box_office_movies["movies"].each do |movie|
   	  id = movie["id"]
   	  title = movie["title"]
+      poster_detailed = movie["posters"]["detailed"]
+      poster_original = movie["posters"]["original"]
+      critics_score = movie["ratings"]["critics_score"]
 
-  	  reviews_url = reviews_template % [id]
+      # Get reviews  	  
+      reviews_url = reviews_template % [id]
 
       # Adding basic retries
       got_reviews = false
@@ -51,10 +55,8 @@ class WordcloudController < ApplicationController
   	    end
   	  end
 
-  	  critics_score = movie["ratings"]["critics_score"]
-
       # Finalize struct
-  	  movies[id] = {"id" => id, "title" => title, "quotes" => quotes, "critics_score" => critics_score}
+  	  movies[id] = {"id" => id, "title" => title, "quotes" => quotes, "critics_score" => critics_score, "poster_original" => poster_original, "poster_detailed" => poster_detailed}
   	end
 
   	return movies.to_json
