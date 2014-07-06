@@ -6,6 +6,7 @@ class WordcloudController < ApplicationController
     @movies = getMovies()
   end
 
+  #TODO: add retries here 
   def callRottenTomato(url)
   	uri = URI.parse(url)
     req = Net::HTTP::Get.new(uri.to_s)
@@ -26,7 +27,21 @@ class WordcloudController < ApplicationController
   	  title = movie["title"]
 
   	  reviews_url = reviews_template % [id]
-  	  reviews = JSON.parse(callRottenTomato(reviews_url))
+
+      # Adding basic retries
+      got_reviews = false
+      curr_retries = 0
+      while !got_reviews && curr_retries < 3 do
+
+  	    reviews = JSON.parse(callRottenTomato(reviews_url))
+        
+        if reviews["reviews"]
+          got_reviews = true
+        else
+          sleep(1)
+          curr_retries = curr_retries + 1
+        end
+      end
 
       # Compile all comments together
   	  quotes = ""
