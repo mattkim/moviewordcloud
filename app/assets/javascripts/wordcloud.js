@@ -25,18 +25,21 @@ function displayMovies() {
     var movie = movies[key];
     console.log(movie);
     quotes = movie["word_list"];
+    rtlink = movie["rtlink"];
 
     // Calculate word array
     var word_array = generateWordArray(quotes);
 
     // Create div for each movie
     var newid = "movie" + movie["id"];
-    $("#example").append("<div><h3>"+movie["title"]+", Critics Score: "+movie["critics_score"]+"<br/><img src='"+movie["poster_detailed"]+"'></img></h3></div><div id='" + newid + "' style='height:300px'></div>");
+    $("#example").append("<div><h3><a href='"+rtlink+"'>"+movie["title"]+"</a><br/>Critics Score: "+movie["critics_score"]+"<br/><img src='"+movie["poster_detailed"]+"'></img></h3></div><div id='" + newid + "' style='height:300px'></div>");
 
     // Create word cloud for each movie
     $("#" + newid).jQCloud(word_array);
   });
 }
+
+//TODO: color code based on freshness
 
 // Calculates the word array used for word cloud
 function generateWordArray(words) {

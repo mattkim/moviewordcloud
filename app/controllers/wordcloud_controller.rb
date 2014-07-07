@@ -22,6 +22,7 @@ class WordcloudController < ApplicationController
       poster_thumbnail = movie["posters"]["thumbnail"]
       poster_profile = movie["posters"]["profile"]
       critics_score = movie["ratings"]["critics_score"]
+      rtlink = movie["links"]["alternate"]
 
       # Get reviews  	  
       reviews_url = reviews_template % [id]
@@ -55,7 +56,7 @@ class WordcloudController < ApplicationController
       word_list = removeBoringWords(word_list, extraBoringWords)
       #exp_words = expWords(word_list)
       # Finalize struct
-  	  movies[id] = {"id" => id, "title" => title, "word_list" => word_list, "critics_score" => critics_score, "poster_original" => poster_original, "poster_detailed" => poster_detailed,"poster_profile" => poster_profile,"poster_thumbnail"=>poster_thumbnail}
+  	  movies[id] = {"id" => id, "title" => title, "rtlink" => rtlink, "word_list" => word_list, "critics_score" => critics_score, "poster_original" => poster_original, "poster_detailed" => poster_detailed,"poster_profile" => poster_profile,"poster_thumbnail"=>poster_thumbnail}
   	end
 
   	return movies.to_json
