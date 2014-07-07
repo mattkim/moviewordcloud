@@ -32,7 +32,8 @@ function displayMovies() {
 
     // Create div for each movie
     var newid = "movie" + movie["id"];
-    $("#example").append("<div><h3><a href='"+rtlink+"'>"+movie["title"]+"</a><br/>Critics Score: "+movie["critics_score"]+"<br/><img src='"+movie["poster_detailed"]+"'></img></h3></div><div id='" + newid + "' style='height:300px'></div>");
+    // Kind of annoying but this div is not truly responsive -- and gets stuck in the original window size
+    $("#example").append("<div class='row'><div class='small-3 medium-3 large-3 columns'><p><a href='"+rtlink+"'>"+movie["title"]+"</a><br/>Critics Score: "+movie["critics_score"]+"<br/><img src='"+movie["poster_detailed"]+"'></img></p></div><div class='small-9 medium-9 large-9 columns'><div id='" + newid + "' style='height:300px; width:400px'></div></div></div>");
 
     // Create word cloud for each movie
     $("#" + newid).jQCloud(word_array);
