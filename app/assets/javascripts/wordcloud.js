@@ -33,7 +33,7 @@ function displayMovies() {
     // Create div for each movie
     var newid = "movie" + movie["id"];
     // Kind of annoying but this div is not truly responsive -- and gets stuck in the original window size
-    $("#example").append("<li style='outline: 1px solid #F2F2F2;'><div class='row' style='background-color:#F2F2F2;'><p><div class='small-3 medium-3 large-3 columns'><img src='"+movie["poster_detailed"]+"'></img></div><div class='small-9 medium-9 large-9 columns left button radius' style='height:75px; background-color:#F7F7F7; outline: 1px solid #F0F0F0; font-color:black'><a href='"+rtlink+"'>"+movie["title"]+"<br/>Critics Score: "+movie["critics_score"]+"</a></p></div></div><br/><div id='" + newid + "' style='height:300px; width:300px'></div></li>");
+    $("#example").append("<li style='outline: 1px solid #F2F2F2; background-color:white'><div class='row' style='background-color:#F2F2F2;'><p><div class='small-3 medium-3 large-3 columns'><img src='"+movie["poster_detailed"]+"'></img></div><div class='small-9 medium-9 large-9 columns left button radius' style='height:75px; background-color:#F7F7F7; outline: 1px solid #F0F0F0; font-color:black'><a href='"+rtlink+"'>"+movie["title"]+"<br/>Critics Score: "+movie["critics_score"]+"</a></p></div></div><br/><div id='" + newid + "' style='height:300px; width:300px'></div></li>");
 
     // Create word cloud for each movie
     $("#" + newid).jQCloud(word_array);
