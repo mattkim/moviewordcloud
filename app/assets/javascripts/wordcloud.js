@@ -33,7 +33,7 @@ function displayMovies() {
     // Create div for each movie
     var newid = "movie" + movie["id"];
     // Kind of annoying but this div is not truly responsive -- and gets stuck in the original window size
-    $("#example").append("<div class='row'><div class='small-3 medium-3 large-3 columns'><p><a href='"+rtlink+"'>"+movie["title"]+"</a><br/>Critics Score: "+movie["critics_score"]+"<br/><img src='"+movie["poster_detailed"]+"'></img></p></div><div class='small-9 medium-9 large-9 columns'><div id='" + newid + "' style='height:300px; width:400px'></div></div></div>");
+    $("#example").append("<li style='outline: 1px solid #F2F2F2;'><div class='row' style='background-color:#F2F2F2;'><p><div class='small-3 medium-3 large-3 columns'><img src='"+movie["poster_detailed"]+"'></img></div><div class='small-9 medium-9 large-9 columns left button radius' style='height:75px; background-color:#F7F7F7; outline: 1px solid #F0F0F0; font-color:black'><a href='"+rtlink+"'>"+movie["title"]+"<br/>Critics Score: "+movie["critics_score"]+"</a></p></div></div><br/><div id='" + newid + "' style='height:300px; width:300px'></div></li>");
 
     // Create word cloud for each movie
     $("#" + newid).jQCloud(word_array);
@@ -63,7 +63,11 @@ function generateWordArray(words) {
   // Put it in word_array format
   var word_array = [];
   for (var key in word_array_tmp) {
-  		word_array.push({text: key, weight: word_array_tmp[key]});
+      var size = word_array_tmp[key];
+      if(size > 2){
+        size = size -1;
+      }
+  		word_array.push({text: key, weight: size});
   }
   return word_array;
 }
