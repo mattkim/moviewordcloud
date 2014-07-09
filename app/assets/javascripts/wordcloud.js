@@ -30,22 +30,49 @@ function displayMovies() {
     // Calculate word array
     var word_array = generateWordArray(quotes);
 
-    // Create div for each movie
+    // Unique movie id per div
     var newid = "movie" + movie["id"];
-    // Kind of annoying but this div is not truly responsive -- and gets stuck in the original window size
-    $("#example").append("<li style='outline: 1px solid #F2F2F2; background-color:white'><div class='row' style='background-color:#F2F2F2;'><p><div class='small-3 medium-3 large-3 columns'><img src='"+movie["poster_detailed"]+"'></img></div><div class='small-9 medium-9 large-9 columns left button radius' style='height:75px; background-color:#F7F7F7; outline: 1px solid #F0F0F0; font-color:black'><a href='"+rtlink+"'>"+movie["title"]+"<br/>Critics Score: "+movie["critics_score"]+"</a></p></div></div><br/><div id='" + newid + "' style='height:300px; width:300px'></div></li>");
+
+    // Create dynamic wordclouds here.
+
+    // Define basic elements
+    var li = $("<li/>",{
+      class: "wcli"
+    });
+
+    var headerrow = $("<div/>",{
+      class: "row wcrow"
+    });
+
+    var image = $("<div/>", {
+      class: "small-3 medium-3 large-3 columns left wcimg"
+    }).append("<img src='"+movie["poster_detailed"]+"'></img>");
+
+    var title = $("<div/>", {
+      class: "small-9 medium-9 large-9 columns left wctitle"
+    }).append("<a href='"+rtlink+"'>"+movie["title"]+"</a><br/>Critics Score: "+movie["critics_score"]);
+
+    var content = $("<div/>", {
+        id: newid,
+        class: "wccontent"
+    });     
+
+    // Create heirarchy
+    $("#example").append(li);
+    li.append(headerrow);
+    li.append(content);
+    headerrow.append(image);
+    headerrow.append(title);
 
     // Create word cloud for each movie
+    // Kind of annoying but this div is not truly responsive -- and gets stuck in the original window size
     $("#" + newid).jQCloud(word_array);
   });
 }
 
-//TODO: color code based on freshness
-
 // Calculates the word array used for word cloud
 function generateWordArray(words) {
   // Create an array of word objects, each representing a word in the cloud
-  //var rando_text = "Long before Optimus Prime hoists his hulking metal frame onto the back of a giant robot dinosaur, wields his mighty sword and rides valiantly away to save the planet once more, Transformers: Age of Extinction plays like a parody You're either awestruck, dumbstruck or just plain struck in the face. Bay has said that this film will kick off a second trilogy of Transformers movies - and I think he's serious. That means there will be (at least) two more of these things. God help us all. I sincerely enjoyed the Transformer who was literally branded by Oreo.‪ The movie's crammed with useless nuts and bolts, the storytelling equivalent of a mechanic who lifts the hood of your car and says, That's everything, fix it yourself.Transfourmers, as I like to call it, is everything you could want in a big-budget tentpole, so long as what you want is sound and fury signifying nothing beyond a guarantee that more of the same is already on the way. The beginning and end of this film are too far apart. It could have been cut by an hour without missing anything important. It is just bloated with junk, including excessive product placement. Inflated, interminable and incoherent Can I make a citizen's arrest for assault with intent to bore to death? Big, dumb and fun. Transformers: Age Of Extinction provides action with zero tension. Michael Bay's latest exercise in excess is the biggest, longest, loudest, explodiest film ever made. The ploy Bay has used, unsuccessfully, is that as the story becomes more and more stupid, and the stupidity is jaw-dropping in its scope, the effects become bigger and bigger It's big, dumb and ugly, but you can also avoid it pretty readily if you want. Why are we here? What is the purpose of life on earth? And why are alien robots so hellbent on impersonating our automobiles?";
   var word_array_tmp = {};
 
   // Calculate counts for each number

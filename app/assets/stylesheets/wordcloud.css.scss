@@ -1,3 +1,39 @@
 // Place all the styles related to the wordcloud controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.bodybg {
+	background-color:#CCDEC5
+}
+
+.navbg {
+	background-color:#7FAA95
+}
+
+.menubg {
+	background-color:#F2CCA9
+}
+
+.wccontent {
+	height:300px;
+	max-width:300px;
+}
+
+.wctitle {
+	height:75px;
+	background-color:#ECE9DA;
+}
+
+.wcrow {
+	background-color:#ECE9DA;
+	padding: 5px;
+}
+
+.wcli {
+	outline: 1px solid #F2F2F2;
+	background-color:white;
+}
+
+.wcimg {
+	
+}
