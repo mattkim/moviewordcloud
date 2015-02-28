@@ -21,8 +21,10 @@ function displayMovies() {
   // Iterate through every movie
   var quotes = "";
   var extra_boring_words = {};
-  Object.keys(movies).forEach(function (key) { 
-    var movie = movies[key];
+  //Object.keys(movies).forEach(function (key) { 
+    //var movie = movies[key];
+    console.log(Object.keys(movies)[0]);
+    var movie = movies[Object.keys(movies)[0]];
     console.log(movie);
     quotes = movie["word_list"];
     rtlink = movie["rtlink"];
@@ -45,12 +47,12 @@ function displayMovies() {
     });
 
     var image = $("<div/>", {
-      class: "small-3 medium-3 large-3 columns left wcimg"
+      class: "small-2 medium-2 large-2 columns left text-left wcimg"
     }).append("<img src='"+movie["poster_detailed"]+"'></img>");
 
     var title = $("<div/>", {
-      class: "small-9 medium-9 large-9 columns left wctitle"
-    }).append("<a href='"+rtlink+"'>"+movie["title"]+"</a><br/>Critics Score: "+movie["critics_score"]);
+      class: "small-10 medium-10 large-10 columns right wctitle"
+    }).append("<a href='"+rtlink+"'>"+movie["title"]+"</a><br/><p>Critics Score: "+movie["critics_score"]+"</p>");
 
     var content = $("<div/>", {
         id: newid,
@@ -58,16 +60,17 @@ function displayMovies() {
     });     
 
     // Create heirarchy
-    $("#example").append(li);
-    li.append(headerrow);
-    li.append(content);
-    headerrow.append(image);
-    headerrow.append(title);
+    //$("#example").append(li);
+    //li.append(headerrow);
+    //li.append(content);
+    //headerrow.append(image);
+    //headerrow.append(title);
 
     // Create word cloud for each movie
     // Kind of annoying but this div is not truly responsive -- and gets stuck in the original window size
-    $("#" + newid).jQCloud(word_array);
-  });
+    //$("#" + newid).jQCloud(word_array);
+    $("#example").jQCloud(word_array);
+  //});
 }
 
 // Calculates the word array used for word cloud

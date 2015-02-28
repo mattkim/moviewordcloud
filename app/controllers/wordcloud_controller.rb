@@ -7,16 +7,16 @@ class WordcloudController < ApplicationController
   end
 
   def getMovies
-  	box_office_movies_uri = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=crwupvtm57dx5nu38f9nhyef"
+      box_office_movies_uri = "http://api.rottentomatoes.com/api/public/v1.0/lists/movies/box_office.json?apikey=crwupvtm57dx5nu38f9nhyef"
     reviews_template = "http://api.rottentomatoes.com/api/public/v1.0/movies/%s/reviews.json?apikey=crwupvtm57dx5nu38f9nhyef"
 
-  	box_office_movies = JSON.parse(callRottenTomato(box_office_movies_uri))
+      box_office_movies = JSON.parse(callRottenTomato(box_office_movies_uri))
 
-    # Create movies struct  	
-  	movies = Hash.new
-  	box_office_movies["movies"].each do |movie|
-  	  id = movie["id"]
-  	  title = movie["title"]
+    # Create movies struct      
+      movies = Hash.new
+      box_office_movies["movies"].each do |movie|
+        id = movie["id"]
+        title = movie["title"]
       poster_detailed = movie["posters"]["detailed"]
       poster_original = movie["posters"]["original"]
       poster_thumbnail = movie["posters"]["thumbnail"]
@@ -24,7 +24,7 @@ class WordcloudController < ApplicationController
       critics_score = movie["ratings"]["critics_score"]
       rtlink = movie["links"]["alternate"]
 
-      # Get reviews  	  
+      # Get reviews        
       reviews_url = reviews_template % [id]
 
       # Adding basic retries
@@ -32,7 +32,7 @@ class WordcloudController < ApplicationController
       curr_retries = 0
       while !got_reviews && curr_retries < 3 do
 
-  	    reviews = JSON.parse(callRottenTomato(reviews_url))
+          reviews = JSON.parse(callRottenTomato(reviews_url))
         
         if reviews["reviews"]
           got_reviews = true
@@ -43,12 +43,12 @@ class WordcloudController < ApplicationController
       end
 
       # Compile all comments together
-  	  quotes = ""
-  	  if reviews["reviews"]
-  	    reviews["reviews"].each do |review|
-  	      quotes += review["quote"] + " "
-  	    end
-  	  end
+        quotes = ""
+        if reviews["reviews"]
+          reviews["reviews"].each do |review|
+            quotes += review["quote"] + " "
+          end
+        end
 
       # Use levenshtein dist to calculate word similarity
       word_list = cleanWords(quotes.split)
@@ -56,10 +56,10 @@ class WordcloudController < ApplicationController
       word_list = removeBoringWords(word_list, extraBoringWords)
       #exp_words = expWords(word_list)
       # Finalize struct
-  	  movies[id] = {"id" => id, "title" => title, "rtlink" => rtlink, "word_list" => word_list, "critics_score" => critics_score, "poster_original" => poster_original, "poster_detailed" => poster_detailed,"poster_profile" => poster_profile,"poster_thumbnail"=>poster_thumbnail}
-  	end
+        movies[id] = {"id" => id, "title" => title, "rtlink" => rtlink, "word_list" => word_list, "critics_score" => critics_score, "poster_original" => poster_original, "poster_detailed" => poster_detailed,"poster_profile" => poster_profile,"poster_thumbnail"=>poster_thumbnail}
+      end
 
-  	return movies.to_json
+      return movies.to_json
   end
 
   def callRottenTomato(url)
