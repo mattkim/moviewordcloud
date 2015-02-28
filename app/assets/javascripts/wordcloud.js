@@ -55,7 +55,7 @@ function displayMovies() {
     Object.keys(movies).forEach(function (key) { 
       var m = movies[key];
       var image = $("<div/>", {
-        class: "small-2 medium-2 large-2 columns left text-left wcimg"
+        class: "columns"
       }).append("<img src='"+m["poster_detailed"]+"'></img>");
 
       var title = $("<div/>", {
