@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   end
 
   # You can have the root of your site routed with "root"
-  root 'articles#index'
+  #root 'articles#index'
+  root 'wordcloud#index'
   get 'wordcloud' => 'wordcloud#index'
   get 'wordcloud/test' => 'wordcloud#test'
 
