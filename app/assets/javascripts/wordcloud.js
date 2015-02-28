@@ -76,7 +76,7 @@ function displayMovies() {
     // Kind of annoying but this div is not truly responsive -- and gets stuck in the original window size
     //$("#" + newid).jQCloud(word_array);
     //
-    $("#example").jQCloud(word_array);
+    $("#outcloud").jQCloud(word_array);
   //});
 }
 
