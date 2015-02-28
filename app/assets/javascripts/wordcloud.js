@@ -61,13 +61,16 @@ function displayMovies() {
       //  class: "small-1 columns"
       //}).append("<img src='"+m["poster_detailed"]+"'></img>");
 
+      var imgid = "img-" + m["id"];
 
-      var image = "<img id='img-"+m["id"]+"' src='"+m["poster_detailed"]+"'></img>";
-      $("#img-"+m["id"]).click({id: m["id"]}, replaceWordcloud);
+      var image = "<img id='"+ imgid +"' src='"+m["poster_detailed"]+"'></img>";
+
+      $("#"+imgid).click({id: m["id"]}, replaceWordcloud);
 
       var title = $("<div/>", {
         class: "small-10 medium-10 large-10 columns right wctitle"
       }).append("<a href='"+rtlink+"'>"+m["title"]+"</a><br/><p>Critics Score: "+m["critics_score"]+"</p>");
+
       //$("#movie-header").append(title);
       $("#movie-header").append(image);
     });
@@ -88,13 +91,14 @@ function displayMovies() {
 }
 
 function replaceWordcloud(event) {
-    var id = event.data.id;
-    var m = movies[id];
-    var quotes = m["word_list"];
-    var word_array = generateWordArray(quotes);
+    alert("blah");
+    //var id = event.data.id;
+    //var m = movies[id];
+    //var quotes = m["word_list"];
+    //var word_array = generateWordArray(quotes);
 
-    $("#outcloud").empty();
-    $("#outcloud").jQCloud(word_array);
+    //$("#outcloud").empty();
+    //$("#outcloud").jQCloud(word_array);
 }
 
 // Calculates the word array used for word cloud
