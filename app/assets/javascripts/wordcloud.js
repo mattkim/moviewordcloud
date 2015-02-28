@@ -3,6 +3,8 @@
 // You can use CoffeeScript in this file: http://coffeescript.org/
 
 // Necessary to wait for DOM to load here.
+var movies;
+
 $(function() {
   displayMovies();
   removeMovies();
@@ -16,7 +18,7 @@ function removeMovies() {
 // Display movies using hidden movies input
 function displayMovies() {
   // Fetch movies from hidden input field
-  var movies = $.parseJSON($("#movies").val());
+  movies = $.parseJSON($("#movies").val());
 
   // Iterate through every movie
   var quotes = "";
@@ -30,6 +32,7 @@ function displayMovies() {
     rtlink = movie["rtlink"];
 
     // Calculate word array
+    // TODO: should be on the server side
     var word_array = generateWordArray(quotes);
 
     // Unique movie id per div
@@ -58,7 +61,9 @@ function displayMovies() {
       //  class: "small-1 columns"
       //}).append("<img src='"+m["poster_detailed"]+"'></img>");
 
-      var image = "<img src='"+m["poster_detailed"]+"'></img>";
+
+      var image = "<img id='img-"+m["id"]+"' src='"+m["poster_detailed"]+"'></img>";
+      $("img-"+m["id"]).click({param1: m["id"]}, replaceWordcloud);
 
       var title = $("<div/>", {
         class: "small-10 medium-10 large-10 columns right wctitle"
@@ -80,6 +85,15 @@ function displayMovies() {
     //
     $("#outcloud").jQCloud(word_array);
   //});
+}
+
+function replaceWordcloud(id) {
+    var m = movies[d];
+    var quotes = m["word_list"];
+    var word_array = generateWordArray(quotes);
+
+    $("#outcloud").empty();
+    $("#outcloud").jQCloud(word_array);
 }
 
 // Calculates the word array used for word cloud
