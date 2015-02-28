@@ -61,8 +61,8 @@ function displayMovies() {
       var title = $("<div/>", {
         class: "small-10 medium-10 large-10 columns right wctitle"
       }).append("<a href='"+rtlink+"'>"+m["title"]+"</a><br/><p>Critics Score: "+m["critics_score"]+"</p>");
-      $("#example").append(title);
-      $("#example").append(image);
+      //$("#movie-header").append(title);
+      $("#movie-header").append(image);
     });
 
     // Create heirarchy
