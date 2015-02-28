@@ -66,48 +66,6 @@ function displayMovies() {
       //$("#movie-header").append(title);
       $("#movie-header").append(image);
     });
-    Object.keys(movies).forEach(function (key) { 
-      var m = movies[key];
-      //var image = $("<div/>", {
-      //  class: "small-1 columns"
-      //}).append("<img src='"+m["poster_detailed"]+"'></img>");
-
-      var image = "<img src='"+m["poster_detailed"]+"'></img>";
-
-      var title = $("<div/>", {
-        class: "small-10 medium-10 large-10 columns right wctitle"
-      }).append("<a href='"+rtlink+"'>"+m["title"]+"</a><br/><p>Critics Score: "+m["critics_score"]+"</p>");
-      //$("#movie-header").append(title);
-      $("#movie-header").append(image);
-    });
-    Object.keys(movies).forEach(function (key) { 
-      var m = movies[key];
-      //var image = $("<div/>", {
-      //  class: "small-1 columns"
-      //}).append("<img src='"+m["poster_detailed"]+"'></img>");
-
-      var image = "<img src='"+m["poster_detailed"]+"'></img>";
-
-      var title = $("<div/>", {
-        class: "small-10 medium-10 large-10 columns right wctitle"
-      }).append("<a href='"+rtlink+"'>"+m["title"]+"</a><br/><p>Critics Score: "+m["critics_score"]+"</p>");
-      //$("#movie-header").append(title);
-      $("#movie-header").append(image);
-    });
-    Object.keys(movies).forEach(function (key) { 
-      var m = movies[key];
-      //var image = $("<div/>", {
-      //  class: "small-1 columns"
-      //}).append("<img src='"+m["poster_detailed"]+"'></img>");
-
-      var image = "<img src='"+m["poster_detailed"]+"'></img>";
-
-      var title = $("<div/>", {
-        class: "small-10 medium-10 large-10 columns right wctitle"
-      }).append("<a href='"+rtlink+"'>"+m["title"]+"</a><br/><p>Critics Score: "+m["critics_score"]+"</p>");
-      //$("#movie-header").append(title);
-      $("#movie-header").append(image);
-    });
 
     // Create heirarchy
     //$("#example").append(li);
