@@ -46,18 +46,24 @@ function displayMovies() {
       class: "row wcrow"
     });
 
-    var image = $("<div/>", {
-      class: "small-2 medium-2 large-2 columns left text-left wcimg"
-    }).append("<img src='"+movie["poster_detailed"]+"'></img>");
-
-    var title = $("<div/>", {
-      class: "small-10 medium-10 large-10 columns right wctitle"
-    }).append("<a href='"+rtlink+"'>"+movie["title"]+"</a><br/><p>Critics Score: "+movie["critics_score"]+"</p>");
 
     var content = $("<div/>", {
         id: newid,
         class: "wccontent"
     });     
+
+    Object.keys(movies).forEach(function (key) { 
+      var m = movies[key];
+      var image = $("<div/>", {
+        class: "small-2 medium-2 large-2 columns left text-left wcimg"
+      }).append("<img src='"+m["poster_detailed"]+"'></img>");
+
+      var title = $("<div/>", {
+        class: "small-10 medium-10 large-10 columns right wctitle"
+      }).append("<a href='"+rtlink+"'>"+m["title"]+"</a><br/><p>Critics Score: "+m["critics_score"]+"</p>");
+      $("#example").append(title);
+      $("#example").append(image);
+    });
 
     // Create heirarchy
     //$("#example").append(li);
@@ -70,8 +76,6 @@ function displayMovies() {
     // Kind of annoying but this div is not truly responsive -- and gets stuck in the original window size
     //$("#" + newid).jQCloud(word_array);
     //
-    $("#example").append(title);
-    $("#example").append(image);
     $("#example").jQCloud(word_array);
   //});
 }
