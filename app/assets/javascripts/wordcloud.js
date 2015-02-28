@@ -69,6 +69,9 @@ function displayMovies() {
     // Create word cloud for each movie
     // Kind of annoying but this div is not truly responsive -- and gets stuck in the original window size
     //$("#" + newid).jQCloud(word_array);
+    //
+    $("#example").append(title);
+    $("#example").append(image);
     $("#example").jQCloud(word_array);
   //});
 }
