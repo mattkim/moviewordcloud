@@ -63,7 +63,7 @@ function displayMovies() {
 
 
       var image = "<img id='img-"+m["id"]+"' src='"+m["poster_detailed"]+"'></img>";
-      $("img-"+m["id"]).click({id: m["id"]}, replaceWordcloud);
+      $("#img-"+m["id"]).click({id: m["id"]}, replaceWordcloud);
 
       var title = $("<div/>", {
         class: "small-10 medium-10 large-10 columns right wctitle"
