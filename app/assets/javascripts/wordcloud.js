@@ -25,7 +25,7 @@ function displayMovies() {
     var m = movies[key];
     var imgurl = m["poster_detailed"];
     var imgid = "img-" + key;
-    var img = "<a href=''><img id='"+ imgid +"' src='"+ imgurl +"'></img></a>";
+    var img = "<img id='"+ imgid +"' src='"+ imgurl +"' style='cursor:pointer;'></img>";
 
     $("#movie-header").append(img);
 
