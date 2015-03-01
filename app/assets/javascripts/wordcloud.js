@@ -28,12 +28,12 @@ function displayMovies() {
   Object.keys(movies).forEach(function (key) { 
     var m = movies[key];
     var imgid = "img-" + m["id"];
-    var image = "<img id='"+ imgid +"' src='"+m["poster_detailed"]+"'></img>";
+    var image = "<a href=""><img id='"+ imgid +"' src='"+m["poster_detailed"]+"'></img></a>";
 
     $("#movie-header").append(image);
 
     $("#" + imgid).click(function() {
-      alert(m["id"]);
+      replaceWordcloud(m["id"]);
     });
   });
 
@@ -44,8 +44,7 @@ function displayMovies() {
   $("#outcloud").jQCloud(word_array);
 }
 
-function replaceWordcloud(event) {
-    var id = event.data.id;
+function replaceWordcloud(id) {
     var m = movies[id];
     var quotes = m["word_list"];
     var word_array = generateWordArray(quotes);
