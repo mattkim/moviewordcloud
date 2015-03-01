@@ -63,11 +63,7 @@ function displayMovies() {
 
       var imgid = "img-" + m["id"];
 
-      var image = "<img id='"+ imgid +"' src='"+m["poster_detailed"]+"'></img>";
-
-      $("#"+imgid).click(function () {
-        alert("asdlfkjasdf");
-      });
+      var image = "<img id='"+ imgid +"' src='"+m["poster_detailed"]+"' onclick='replaceWordcloud("+md["id"]+")'></img>";
 
       var title = $("<div/>", {
         class: "small-10 medium-10 large-10 columns right wctitle"
@@ -92,15 +88,14 @@ function displayMovies() {
   //});
 }
 
-function replaceWordcloud(event) {
-    alert("blah");
+function replaceWordcloud(id) {
     //var id = event.data.id;
-    //var m = movies[id];
-    //var quotes = m["word_list"];
-    //var word_array = generateWordArray(quotes);
+    var m = movies[id];
+    var quotes = m["word_list"];
+    var word_array = generateWordArray(quotes);
 
-    //$("#outcloud").empty();
-    //$("#outcloud").jQCloud(word_array);
+    $("#outcloud").empty();
+    $("#outcloud").jQCloud(word_array);
 }
 
 // Calculates the word array used for word cloud
