@@ -4,6 +4,7 @@
 
 // Necessary to wait for DOM to load here.
 var movies;
+var buildingCloud = false;
 
 $(function() {
   displayMovies();
@@ -41,12 +42,20 @@ function displayMovies() {
 }
 
 function addWordcloud(id) {
+    if(buildingCloud) {
+      return;
+    }
+
+    buildingCloud = true;
+
     var m = movies[id];
     var quotes = m["word_list"];
     var word_array = generateWordArray(quotes);
 
     $("#outcloud").empty();
     $("#outcloud").jQCloud(word_array);
+
+    buildingCloud = false;
 }
 
 // Calculates the word array used for word cloud
