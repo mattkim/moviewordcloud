@@ -19,10 +19,6 @@ function removeMovies() {
 function displayMovies() {
   // Fetch movies from hidden input field
   movies = $.parseJSON($("#movies").val());
-  var movie = movies[Object.keys(movies)[0]];
-  console.log(movie);
-  var quotes = movie["word_list"];
-  var rtlink = movie["rtlink"];
 
   // Add images
   Object.keys(movies).forEach(function (key) { 
@@ -37,14 +33,13 @@ function displayMovies() {
     });
   });
 
-
   // Calculate word array
   // TODO: should be on the server side
-  var word_array = generateWordArray(quotes);
-  $("#outcloud").jQCloud(word_array);
+  var first_id = Object.keys(movies)[0];
+  addWordcloud(first_id);
 }
 
-function replaceWordcloud(id) {
+function addWordcloud(id) {
     var m = movies[id];
     var quotes = m["word_list"];
     var word_array = generateWordArray(quotes);
