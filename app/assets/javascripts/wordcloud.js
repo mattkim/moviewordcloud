@@ -48,6 +48,7 @@ function addWordcloud(id) {
     var quotes = m["word_list"];
     var word_array = generateWordArray(quotes);
     latestcloud = "#outcloud_word_" + word_array.length;
+    console.log(latestcloud);
     $("#outcloud").empty();
     $("#outcloud").jQCloud(word_array);
   }
