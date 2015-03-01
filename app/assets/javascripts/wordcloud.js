@@ -23,20 +23,21 @@ function displayMovies() {
   // Add images
   Object.keys(movies).forEach(function (key) { 
     var m = movies[key];
-    var imgid = "img-" + m["id"];
-    var image = "<a href=""><img id='"+ imgid +"' src='"+m["poster_detailed"]+"'></img></a>";
+    var imgurl = m["poster_detailed"];
+    var imgid = "img-" + key;
+    var img = "<a href=""><img id='"+ imgid +"' src='"+ imgurl +"'></img></a>";
 
-    $("#movie-header").append(image);
+    $("#movie-header").append(img);
 
     $("#" + imgid).click(function() {
-      replaceWordcloud(m["id"]);
+      addWordcloud(key);
     });
   });
 
   // Calculate word array
   // TODO: should be on the server side
-  var first_id = Object.keys(movies)[0];
-  addWordcloud(first_id);
+  var firstid = Object.keys(movies)[0];
+  addWordcloud(firstid);
 }
 
 function addWordcloud(id) {
