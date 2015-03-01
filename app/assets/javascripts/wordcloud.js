@@ -31,11 +31,12 @@ function displayMovies() {
     var image = "<img id='"+ imgid +"' src='"+m["poster_detailed"]+"'></img>";
 
     $("#movie-header").append(image);
+
+    $("#" + imgid).click(function() {
+      alert(m["id"]);
+    });
   });
 
-  $( "#movie-header" ).click(function() {
-    alert("asdf");
-  });
 
   // Calculate word array
   // TODO: should be on the server side
