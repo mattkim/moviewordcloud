@@ -4,7 +4,7 @@
 
 // Necessary to wait for DOM to load here.
 var movies;
-var buildingCloud = false;
+var latestcloud = "#outcloud";
 
 $(function() {
   displayMovies();
@@ -42,20 +42,15 @@ function displayMovies() {
 }
 
 function addWordcloud(id) {
-    if(buildingCloud) {
-      return;
-    }
-
-    buildingCloud = true;
-
+  // Only add wordcloud if our latest wordcloud exists
+  if ($(latestcloud).length) {
     var m = movies[id];
     var quotes = m["word_list"];
     var word_array = generateWordArray(quotes);
-
+    latestcloud = "#outcloud_word_" + word_array.length;
     $("#outcloud").empty();
     $("#outcloud").jQCloud(word_array);
-
-    buildingCloud = false;
+  }
 }
 
 // Calculates the word array used for word cloud
