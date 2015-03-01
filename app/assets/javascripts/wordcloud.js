@@ -19,84 +19,38 @@ function removeMovies() {
 function displayMovies() {
   // Fetch movies from hidden input field
   movies = $.parseJSON($("#movies").val());
+  var movie = movies[Object.keys(movies)[0]];
+  console.log(movie);
+  var quotes = movie["word_list"];
+  var rtlink = movie["rtlink"];
 
-  // Iterate through every movie
-  var quotes = "";
-  var extra_boring_words = {};
-  //Object.keys(movies).forEach(function (key) { 
-    //var movie = movies[key];
-    console.log(Object.keys(movies)[0]);
-    var movie = movies[Object.keys(movies)[0]];
-    console.log(movie);
-    quotes = movie["word_list"];
-    rtlink = movie["rtlink"];
+  // Add images
+  Object.keys(movies).forEach(function (key) { 
+    var m = movies[key];
+    var imgid = "img-" + m["id"];
+    var image = "<img id='"+ imgid +"' src='"+m["poster_detailed"]+"'></img>";
 
-    // Calculate word array
-    // TODO: should be on the server side
-    var word_array = generateWordArray(quotes);
+    $("#movie-header").append(image);
+  });
 
-    // Unique movie id per div
-    var newid = "movie" + movie["id"];
+  $( "#movie-header" ).click(function() {
+    alert("asdf");
+  });
 
-    // Create dynamic wordclouds here.
-
-    // Define basic elements
-    var li = $("<li/>",{
-      class: "wcli"
-    });
-
-    var headerrow = $("<div/>",{
-      class: "row wcrow"
-    });
-
-
-    var content = $("<div/>", {
-        id: newid,
-        class: "wccontent"
-    });     
-
-    Object.keys(movies).forEach(function (key) { 
-      var m = movies[key];
-      //var image = $("<div/>", {
-      //  class: "small-1 columns"
-      //}).append("<img src='"+m["poster_detailed"]+"'></img>");
-
-      var imgid = "img-" + m["id"];
-
-      var image = "<img id='"+ imgid +"' src='"+m["poster_detailed"]+"'></img>";
-
-      var title = $("<div/>", {
-        class: "small-10 medium-10 large-10 columns right wctitle"
-      }).append("<a href='"+rtlink+"'>"+m["title"]+"</a><br/><p>Critics Score: "+m["critics_score"]+"</p>");
-
-      //$("#movie-header").append(title);
-      $("#movie-header").append(image);
-    });
-
-    // Create heirarchy
-    //$("#example").append(li);
-    //li.append(headerrow);
-    //li.append(content);
-    //headerrow.append(image);
-    //headerrow.append(title);
-
-    // Create word cloud for each movie
-    // Kind of annoying but this div is not truly responsive -- and gets stuck in the original window size
-    //$("#" + newid).jQCloud(word_array);
-    //
-    $("#outcloud").jQCloud(word_array);
-  //});
+  // Calculate word array
+  // TODO: should be on the server side
+  var word_array = generateWordArray(quotes);
+  $("#outcloud").jQCloud(word_array);
 }
 
 function replaceWordcloud(event) {
-    alert("blah");
-    //var id = event.data.id;
-    //var m = movies[id];
-    //var quotes = m["word_list"];
-    //var word_array = generateWordArray(quotes);
+    var id = event.data.id;
+    var m = movies[id];
+    var quotes = m["word_list"];
+    var word_array = generateWordArray(quotes);
 
-    //$("#outcloud").empty();
-    //$("#outcloud").jQCloud(word_array);
+    $("#outcloud").empty();
+    $("#outcloud").jQCloud(word_array);
 }
 
 // Calculates the word array used for word cloud
@@ -107,13 +61,13 @@ function generateWordArray(words) {
   // Calculate counts for each number
   $(words).each(function(index,value) {
     count = word_array_tmp[value];
-  	//console.log(count)
-  	if (count === undefined) {
-  		count = 1;
-  	} else {
-  		count = count + 1;
-  	}
-  	word_array_tmp[value] = count;
+    //console.log(count)
+    if (count === undefined) {
+      count = 1;
+    } else {
+      count = count + 1;
+    }
+    word_array_tmp[value] = count;
   });
 
   // Put it in word_array format
@@ -123,7 +77,7 @@ function generateWordArray(words) {
       if(size > 2){
         size = size -1;
       }
-  		word_array.push({text: key, weight: size});
+      word_array.push({text: key, weight: size});
   }
   return word_array;
 }
