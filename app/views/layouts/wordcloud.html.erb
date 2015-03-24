@@ -3,26 +3,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title><%= content_for?(:title) ? yield(:title) : "movie wordclouds" %></title>
-
-    <%= stylesheet_link_tag    "application" %>
+    <%= stylesheet_link_tag "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
     <%= javascript_include_tag "application" %>
   </head>
 
   <body class="bodybg">
-    <!--
-      <li class="active"><a href="#"><i class="fi-social-facebook"></i></a></li>
-      <li class="active"><a href="#"><i class="fi-social-reddit"></i></a></li>
-      <li class="active"><a href="#"><i class="fi-social-twitter"></i></a></li>
-      <li class="active"><a href="#"><i class="fi-social-tumblr"></i></a></li>
-      -->
     <%= yield %>
-
-    <!--TODO: figure out how to inherit some of this layout from application -->
-    <!-- also work on google ad sense and google analytics support -->
-    <%= render 'layouts/googleanalytics' %>
   </body>
 </html>
