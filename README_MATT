@@ -1,5 +1,11 @@
 #Run before running website locally
+brew uninstall postgresql
+brew install postgresql
+rm -fr /usr/local/var/postgres
+initdb /usr/local/var/postgres
 postgres -D /usr/local/var/postgres
+bin/rake db:create db:migrate
+rails server
 
 #Next style up my blog
 #Then bootstrap app with devise

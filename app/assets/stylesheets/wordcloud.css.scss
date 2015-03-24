@@ -50,15 +50,38 @@ a {
 	color:#000000
 }
 
-img {
-  height: 70px
+//img {
+//  height: 70px;
+//  margin-bottom: 3px;
+//}
 
+
+img {
+  //padding:5px 0;
+  padding-bottom: 5px;
+  height: 80px;
 }
 
 img:hover
 {
-  border-bottom: 3px solid #7CF3D3;
+  background:#7CF3D3;
 }
+
+img:active
+{
+  background:#51C3AA;
+}
+//img:before {
+//  content:"\a0";
+//  display:block;
+//  padding:2px 0;
+//  line-height:1px;
+//  border-top:1px dashed #000;
+//}
+
+//img p {
+//  padding:0 10px;
+//}
 
 p {
 	size:12px;
