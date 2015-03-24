@@ -31,14 +31,62 @@ function displayMovies() {
     $("#movie-header").append(img);
 
     $("#" + imgid).click(function() {
+      colorImage(imgid);
+      addMovieData(key);
       addWordcloud(key);
+    });
+
+    $("#" + imgid).hover(function() {
+      hoverMovieData(key);
+    },
+    function() {
+      leaveMovieData(key);
     });
   });
 
   // Calculate word array
   // TODO: should be on the server side
   var firstid = Object.keys(movies)[0];
+  colorImage("img-" + firstid);
+  addMovieData(firstid);
   addWordcloud(firstid);
+}
+
+var currImg;
+
+function colorImage(imgid) {
+  if ($(latestcloud).length) {
+    if(currImg){
+      $('#' + currImg).css("background","");
+    }
+    $('#' + imgid).css("background","#51C3AA");
+    currImg = imgid;
+  }
+}
+
+var currMovie;
+
+function hoverMovieData(id) {
+  currMovie = $("#movie-data").html();
+  var m = movies[id];
+  var title = m["title"];
+  $("#movie-data").empty();
+  $("#movie-data").append(title);
+}
+
+function leaveMovieData(id) {
+  $("#movie-data").empty();
+  $("#movie-data").append(currMovie);
+}
+
+function addMovieData(id) {
+  if ($(latestcloud).length) {
+    var m = movies[id];
+    var title = m["title"];
+    $("#movie-data").empty();
+    $("#movie-data").append(title);
+    currMovie = $("#movie-data").html();
+  }
 }
 
 function addWordcloud(id) {
