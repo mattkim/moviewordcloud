@@ -24,7 +24,9 @@ function displayMovies() {
   // Add images
   Object.keys(movies).forEach(function (key) { 
     var m = movies[key];
-    var imgurl = m["poster_detailed"];
+    //console.log(m)
+    //var imgurl = m["poster_detailed"];
+    var imgurl = m["gimg"];
     var imgid = "img-" + key;
     var img = "<img id='"+ imgid +"' src='"+ imgurl +"' style='cursor:pointer;'></img>";
 
@@ -98,6 +100,17 @@ function addWordcloud(id) {
     latestcloud = "#outcloud_word_" + (word_array.length - 1);
     console.log(latestcloud);
     $("#outcloud").empty();
+
+    width = $(window).width();
+    if (width >= 800) {
+      $("#outcloud").css("height", 300);
+      $("#outcloud").css("margin-top", 15);
+    } else {
+      $("#outcloud").css("height", 500);
+      $("#outcloud").css("margin-top", 0);
+    }
+
+    $("#outcloud").css("width", $(window).width());
     $("#outcloud").jQCloud(word_array);
   }
 }
