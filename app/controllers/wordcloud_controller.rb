@@ -21,7 +21,8 @@ class WordcloudController < ApplicationController
   end
 
   def getLegacyImgURL(title)
-    title = URI.escape(title + " media-imdb movie poster")
+    #title = URI.escape(title + " media-imdb movie poster")
+    title = URI.escape(title + " media.tumblr movie poster -impawards -imdb -collider")
     req = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=" + title
     img_results = JSON.parse(call_ssl(req))
     if img_results && img_results["responseData"] && img_results["responseData"]["results"]
