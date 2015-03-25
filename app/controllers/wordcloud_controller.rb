@@ -79,12 +79,12 @@ class WordcloudController < ApplicationController
         word_list = removeBoringWords(word_list, extraBoringWords)
         #exp_words = expWords(word_list)
         
-        gimg = getImgURL(title)
+        #gimg = getImgURL(title)
 
         # Fallback to legacy google image search api
-        if gimg == ""
-          gimg = getLegacyImgURL(title)
-        end
+        #if gimg == ""
+        gimg = getLegacyImgURL(title)
+        #end
 
         # Finalize struct
         movies[id] = {"id" => id,
