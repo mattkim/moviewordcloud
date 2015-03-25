@@ -20,9 +20,9 @@ class WordcloudController < ApplicationController
     end
   end
 
-  def getLegacyImgURL(title)
+  def getLegacyImgURL(title, year)
     #title = URI.escape(title + " media-imdb movie poster")
-    title = URI.escape(title + " media.tumblr movie poster -impawards -imdb -collider")
+    title = URI.escape(title + " " + year.to_s + " media.tumblr movie poster -impawards -imdb -collider")
     req = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=" + title
     img_results = JSON.parse(call_ssl(req))
     if img_results && img_results["responseData"] && img_results["responseData"]["results"]
@@ -43,6 +43,7 @@ class WordcloudController < ApplicationController
       box_office_movies["movies"].each do |movie|
         id = movie["id"]
         title = movie["title"]
+        year = movie["year"]
         poster_detailed = movie["posters"]["detailed"]
         poster_original = movie["posters"]["original"]
         poster_thumbnail = movie["posters"]["thumbnail"]
@@ -84,7 +85,7 @@ class WordcloudController < ApplicationController
 
         # Fallback to legacy google image search api
         #if gimg == ""
-        gimg = getLegacyImgURL(title)
+        gimg = getLegacyImgURL(title, year)
         #end
 
         # Finalize struct
