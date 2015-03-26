@@ -47,3 +47,5 @@ gem 'foundation-rails'
 gem 'foundation-icons-sass-rails'
 
 gem "jqcloud-rails"
+
+gem 'redis'

@@ -4,7 +4,25 @@ require 'json'
 
 class WordcloudController < ApplicationController
   def index
-    @movies = getMovies()
+    movies = getCachedMovies()
+
+    if !movies
+      movies = getMovies()
+    end
+
+    cacheMovies(movies)
+
+    @movies = movies
+  end
+
+  def getCachedMovies
+    return REDIS.get("movies")
+  end
+
+  def cacheMovies(movies)
+    REDIS.set("movies",movies)
+    # 1 day
+    REDIS.expire("movies",86400)
   end
 
   # Uses both ways of getting movie posters
