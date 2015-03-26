@@ -9,6 +9,30 @@ var latestcloud = "#outcloud";
 $(function() {
   displayMovies();
   removeMovies();
+
+  scrolled = 0;
+
+  var imgwidth = 0;
+
+  $('#movie-header').children('img').each(function(){
+    imgwidth = imgwidth + 125
+  });
+
+  $(".next").click(function() {
+    if (scrolled < imgwidth) {
+      scrolled = scrolled + 300;
+      $("#movie-header").scroll();
+      $("#movie-header").animate({scrollLeft:scrolled},200);
+    }
+  });
+
+  $(".prev").click(function() {
+    if (scrolled > 0) {
+      scrolled = scrolled - 300;
+      $("#movie-header").scroll();
+      $("#movie-header").animate({scrollLeft:scrolled},200);
+    }
+  });
 });
 
 // Removes the hidden movies input
@@ -28,7 +52,7 @@ function displayMovies() {
     //var imgurl = m["poster_detailed"];
     var imgurl = m["gimg"];
     var imgid = "img-" + key;
-    var img = "<img id='"+ imgid +"' src='"+ imgurl +"' style='cursor:pointer;'></img>";
+    var img = "<img id='"+ imgid +"' src='"+ imgurl +"'></img>";
 
     $("#movie-header").append(img);
 

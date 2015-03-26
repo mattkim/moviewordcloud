@@ -53,6 +53,7 @@ a {
 img {
   padding-bottom: 10px;
   height: 250px;
+  cursor:pointer;
 }
 
 img:hover
@@ -84,4 +85,58 @@ img:active
 }
 
 #outcloud{
+}
+
+.prev {
+  position: absolute;
+  top: 115px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  background: #51C3AA;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 0 1px #000;
+  font: 24px/27px Arial, sans-serif;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  -webkit-box-shadow: 0 0 2px #999;
+  -moz-box-shadow: 0 0 2px #999;
+  box-shadow: 0 0 2px #999;
+  left: 15px;
+  opacity: .25;
+  cursor:pointer;
+}
+
+.prev:hover
+{
+  opacity: .85;
+}
+
+.next:hover
+{
+  opacity: .85;
+}
+
+.next {
+  position: absolute;
+  top: 115px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  background: #51C3AA;
+  color: #fff;
+  text-decoration: none;
+  text-shadow: 0 0 1px #000;
+  font: 24px/27px Arial, sans-serif;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  -webkit-box-shadow: 0 0 2px #999;
+  -moz-box-shadow: 0 0 2px #999;
+  box-shadow: 0 0 2px #999;
+  right: 15px;
+  opacity: .25;
+  cursor:pointer;
 }
