@@ -105,18 +105,8 @@ img:active
   -moz-box-shadow: 0 0 2px #999;
   box-shadow: 0 0 2px #999;
   left: 15px;
-  opacity: .25;
+  opacity: .35;
   cursor:pointer;
-}
-
-.prev:hover
-{
-  opacity: .85;
-}
-
-.next:hover
-{
-  opacity: .85;
 }
 
 .next {
@@ -137,6 +127,15 @@ img:active
   -moz-box-shadow: 0 0 2px #999;
   box-shadow: 0 0 2px #999;
   right: 15px;
-  opacity: .25;
+  opacity: .85;
   cursor:pointer;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

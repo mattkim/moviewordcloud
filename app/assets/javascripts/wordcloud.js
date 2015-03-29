@@ -13,30 +13,49 @@ $(function() {
   scrolled = 0;
 
   var imgwidth = 0;
+  var currPos = 0;
 
   var $imgs = $("#movie-header img");
 
   $imgs.each(function(){
       $(this).load(function() {
-        console.log($(this)[0].clientWidth);
         imgwidth = imgwidth + $(this)[0].clientWidth;
       });
   });
 
   $(".next").click(function() {
-    var currPos = $(this)[0].offsetLeft;
+    currPos = $(this)[0].offsetLeft;
     if (scrolled < imgwidth - currPos) {
+      $(this).css("opacity",".85");
       scrolled = scrolled + 300;
       $("#movie-header").scroll();
       $("#movie-header").animate({scrollLeft:scrolled},200);
+    } else {
+      $(this).css("opacity",".35");
+    }
+    if (scrolled > 0) {
+      $(".prev").css("opacity",".85");
+    } else {
+      $(".prev").css("opacity",".35");
     }
   });
 
   $(".prev").click(function() {
+    currPos = $(".next")[0].offsetLeft;
+
     if (scrolled > 0) {
+      $(this).css("opacity",".85");
       scrolled = scrolled - 300;
       $("#movie-header").scroll();
       $("#movie-header").animate({scrollLeft:scrolled},200);
+    } else {
+      $(this).css("opacity",".35");
+    }
+
+    if (scrolled < imgwidth - currPos) {
+      $(".next").css("opacity",".85");
+    } else {
+      $(".next").css("opacity",".35");
     }
   });
 });
@@ -128,7 +147,7 @@ function addWordcloud(id) {
     var quotes = m["word_list"];
     var word_array = generateWordArray(quotes);
     latestcloud = "#outcloud_word_" + (word_array.length - 1);
-    console.log(latestcloud);
+    // console.log(latestcloud);
     $("#outcloud").empty();
 
     width = $(window).width();
