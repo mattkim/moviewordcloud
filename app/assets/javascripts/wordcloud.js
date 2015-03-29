@@ -14,12 +14,18 @@ $(function() {
 
   var imgwidth = 0;
 
-  $('#movie-header').children('img').each(function(){
-    imgwidth = imgwidth + 125
+  var $imgs = $("#movie-header img");
+
+  $imgs.each(function(){
+      $(this).load(function() {
+        console.log($(this)[0].clientWidth);
+        imgwidth = imgwidth + $(this)[0].clientWidth;
+      });
   });
 
   $(".next").click(function() {
-    if (scrolled < imgwidth) {
+    var currPos = $(this)[0].offsetLeft;
+    if (scrolled < imgwidth - currPos) {
       scrolled = scrolled + 300;
       $("#movie-header").scroll();
       $("#movie-header").animate({scrollLeft:scrolled},200);
