@@ -24,15 +24,19 @@ $(function() {
   });
 
   $(".next").click(function() {
-    currPos = $(this)[0].offsetLeft;
+    currPos = $(this)[0].offsetLeft + ($(this)[0].offsetWidth / 2);
     if (scrolled < imgwidth - currPos) {
-      $(this).css("opacity",".85");
       scrolled = scrolled + 300;
       $("#movie-header").scroll();
       $("#movie-header").animate({scrollLeft:scrolled},200);
-    } else {
-      $(this).css("opacity",".35");
+
+      if (scrolled < imgwidth - currPos) {
+        $(this).css("opacity",".85");
+      } else {
+        $(this).css("opacity",".35");
+      }
     }
+
     if (scrolled > 0) {
       $(".prev").css("opacity",".85");
     } else {
@@ -41,15 +45,17 @@ $(function() {
   });
 
   $(".prev").click(function() {
-    currPos = $(".next")[0].offsetLeft;
+    currPos = $(this)[0].offsetLeft + ($(this)[0].offsetWidth / 2);
 
     if (scrolled > 0) {
-      $(this).css("opacity",".85");
       scrolled = scrolled - 300;
       $("#movie-header").scroll();
       $("#movie-header").animate({scrollLeft:scrolled},200);
-    } else {
-      $(this).css("opacity",".35");
+      if (scrolled > 0) {
+        $(this).css("opacity",".85");
+      } else {
+        $(this).css("opacity",".35");
+      }
     }
 
     if (scrolled < imgwidth - currPos) {
