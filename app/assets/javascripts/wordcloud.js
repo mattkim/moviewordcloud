@@ -31,16 +31,16 @@ $(function() {
       $("#movie-header").animate({scrollLeft:scrolled},200);
 
       if (scrolled < imgwidth - currPos) {
-        $(this).css("opacity",".85");
+        $(this).css("opacity","1");
       } else {
-        $(this).css("opacity",".35");
+        $(this).css("opacity",".25");
       }
     }
 
     if (scrolled > 0) {
-      $(".prev").css("opacity",".85");
+      $(".prev").css("opacity","1");
     } else {
-      $(".prev").css("opacity",".35");
+      $(".prev").css("opacity",".25");
     }
   });
 
@@ -52,16 +52,16 @@ $(function() {
       $("#movie-header").scroll();
       $("#movie-header").animate({scrollLeft:scrolled},200);
       if (scrolled > 0) {
-        $(this).css("opacity",".85");
+        $(this).css("opacity","1");
       } else {
-        $(this).css("opacity",".35");
+        $(this).css("opacity",".25");
       }
     }
 
     if (scrolled < imgwidth - currPos) {
-      $(".next").css("opacity",".85");
+      $(".next").css("opacity","1");
     } else {
-      $(".next").css("opacity",".35");
+      $(".next").css("opacity",".25");
     }
   });
 });
