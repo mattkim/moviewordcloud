@@ -27,8 +27,8 @@ class WordcloudController < ApplicationController
 
   # Uses both ways of getting movie posters
   # legacy google image search api and current google custom search
-  def getImgURL(title)
-    title = URI.escape(title + " media-imdb movie poster")
+  def getImgURL(title, year)
+    title = URI.escape(title + " " + year.to_s + " movie poster")
     req = "https://www.googleapis.com/customsearch/v1?key=AIzaSyAyLoJQc-3aOYZLlHff3S4JPmeK88rL878&cx=015799936154194163641:2d_yj8n3fbm&q="+title+"&searchType=image"
     img_results = JSON.parse(call_ssl(req))
     if img_results && img_results["items"]
@@ -103,7 +103,7 @@ class WordcloudController < ApplicationController
 
         # Fallback to legacy google image search api
         #if gimg == ""
-        gimg = getLegacyImgURL(title, year)
+        gimg = getImgURL(title, year)
         #end
 
         # Finalize struct
