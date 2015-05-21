@@ -32,10 +32,19 @@ class WordcloudController < ApplicationController
     req = "https://www.googleapis.com/customsearch/v1?key=AIzaSyAyLoJQc-3aOYZLlHff3S4JPmeK88rL878&cx=015799936154194163641:2d_yj8n3fbm&q="+title+"&searchType=image"
     img_results = JSON.parse(call_ssl(req))
     if img_results && img_results["items"]
-      return img_results["items"][0]["link"]
-    else
-      return ""
+      img_results["items"].each do |img_result|
+        link = img_result["link"]
+        logger.info(link);
+
+        # Return the first link that gives a 200
+        if head_ssl(link) == "200"
+          return link
+        end
+      end
     end
+
+    # Return empty string if we don't find anything
+    return ""
   end
 
   def getLegacyImgURL(title, year)
@@ -121,6 +130,12 @@ class WordcloudController < ApplicationController
       end
 
       return movies.to_json
+  end
+
+  def head_ssl(url)
+    uri = URI.parse(url)
+    res = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https', :verify_mode => OpenSSL::SSL::VERIFY_NONE) {|http|http.head(uri.path)}
+    return res.code
   end
 
   def call(url)
