@@ -97,9 +97,11 @@ function displayMovies() {
 
     $("#" + imgid).hover(function() {
       hoverMovieData(key);
+      hoverColorImg(imgid);
     },
     function() {
       leaveMovieData(key);
+      leaveColorImg(imgid);
     });
   });
 
@@ -120,6 +122,18 @@ function colorImage(imgid) {
     }
     $('#' + imgid).css("background","#51C3AA");
     currImg = imgid;
+  }
+}
+
+function hoverColorImg(imgid) {
+  if ($(latestcloud).length) {
+    $('#' + imgid).css("background","#7CF3D3");
+  }
+}
+
+function leaveColorImg(imgid) {
+  if ($(latestcloud).length) {
+    $('#' + imgid).css("background","");
   }
 }
 
@@ -176,6 +190,7 @@ function addWordcloud(id) {
 
 // Calculates the word array used for word cloud
 function generateWordArray(words) {
+  // TODO: on mobile we should limit number of words displayed to half?
   // Create an array of word objects, each representing a word in the cloud
   var word_array_tmp = {};
 
