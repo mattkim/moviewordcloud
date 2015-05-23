@@ -126,11 +126,13 @@ function colorImage(imgid) {
 var currMovie;
 
 function hoverMovieData(id) {
-  currMovie = $("#movie-data").html();
-  var m = movies[id];
-  var title = m["title"];
-  $("#movie-data").empty();
-  $("#movie-data").append(title);
+  if ($(latestcloud).length) {
+    currMovie = $("#movie-data").html();
+    var m = movies[id];
+    var title = m["title"];
+    $("#movie-data").empty();
+    $("#movie-data").append(title);
+  }
 }
 
 function leaveMovieData(id) {
@@ -139,7 +141,7 @@ function leaveMovieData(id) {
 }
 
 function addMovieData(id) {
-  if ($(latestcloud).length > 0) {
+  if ($(latestcloud).length) {
     var m = movies[id];
     var title = m["title"];
     $("#movie-data").empty();
