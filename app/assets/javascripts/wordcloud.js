@@ -170,7 +170,6 @@ function addWordcloud(id) {
     var m = movies[id];
     var quotes = m["word_list"];
     var word_array = generateWordArray(quotes);
-    latestcloud = "#outcloud_word_" + (word_array.length - 1);
     // console.log(latestcloud);
     $("#outcloud").empty();
 
@@ -183,6 +182,8 @@ function addWordcloud(id) {
       $("#outcloud").css("margin-top", 0);
       word_array = word_array.slice(0, word_array.length/2);
     }
+
+    latestcloud = "#outcloud_word_" + (word_array.length - 1);
 
     $("#outcloud").css("width", $(window).width());
     $("#outcloud").jQCloud(word_array);
