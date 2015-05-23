@@ -38,7 +38,7 @@ class WordcloudController < ApplicationController
 
       box_office_movies = JSON.parse(@shttp.call(box_office_movies_uri))
 
-      # Create movies struct      
+      # Create movies struct
       movies = Hash.new
       box_office_movies["movies"].each do |movie|
         id = movie["id"]
@@ -51,21 +51,11 @@ class WordcloudController < ApplicationController
         critics_score = movie["ratings"]["critics_score"]
         rtlink = movie["links"]["alternate"]
 
-        # Get reviews        
+        # Get reviews
         reviews_url = reviews_template % [id]
 
         # Adding basic retries
-        got_reviews = false
-        curr_retries = 0
-        while !got_reviews && curr_retries < 3 do
-          reviews = JSON.parse(@shttp.call(reviews_url))
-          if reviews["reviews"]
-            got_reviews = true
-          else
-            sleep(1)
-            curr_retries = curr_retries + 1
-          end
-        end
+        reviews = @shttp.call_retry(reviews_url, "reviews")
 
         # Compile all comments together
         quotes = ""
