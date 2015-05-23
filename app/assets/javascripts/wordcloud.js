@@ -126,13 +126,13 @@ function colorImage(imgid) {
 }
 
 function hoverColorImg(imgid) {
-  if ($(latestcloud).length) {
+  if ($(latestcloud).length && imgid != currImg) {
     $('#' + imgid).css("background","#7CF3D3");
   }
 }
 
 function leaveColorImg(imgid) {
-  if ($(latestcloud).length) {
+  if ($(latestcloud).length && imgid != currImg) {
     $('#' + imgid).css("background","");
   }
 }
