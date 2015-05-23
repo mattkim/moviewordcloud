@@ -29,7 +29,7 @@ class WordcloudController < ApplicationController
   # legacy google image search api and current google custom search
   def getImgURL(title, year)
     title = URI.escape(title + " " + year.to_s + " movie poster")
-    req = "https://www.googleapis.com/customsearch/v1?key=AIzaSyAyLoJQc-3aOYZLlHff3S4JPmeK88rL878&cx=015799936154194163641:2d_yj8n3fbm&q="+title+"&searchType=image"
+    req = "https://www.googleapis.com/customsearch/v1?key=AIzaSyAyLoJQc-3aOYZLlHff3S4JPmeK88rL878&cx=015799936154194163641:2d_yj8n3fbm&q="+title+"&searchType=image&imgSize=medium"
     img_results = JSON.parse(call_ssl(req))
     if img_results && img_results["items"]
       img_results["items"].each do |img_result|
