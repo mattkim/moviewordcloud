@@ -6,6 +6,7 @@
 var movies;
 var latestcloud = "#outcloud";
 
+// Begining of function onload
 $(function() {
   displayMovies();
   removeMovies();
@@ -65,6 +66,7 @@ $(function() {
     }
   });
 });
+// End of function
 
 // Removes the hidden movies input
 function removeMovies() {
@@ -137,7 +139,7 @@ function leaveMovieData(id) {
 }
 
 function addMovieData(id) {
-  if ($(latestcloud).length) {
+  if ($(latestcloud).length > 0) {
     var m = movies[id];
     var title = m["title"];
     $("#movie-data").empty();
