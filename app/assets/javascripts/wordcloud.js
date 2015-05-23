@@ -168,8 +168,7 @@ function addWordcloud(id) {
   // Only add wordcloud if our latest wordcloud exists
   if ($(latestcloud).length) {
     var m = movies[id];
-    var quotes = m["word_list"];
-    var word_array = generateWordArray(quotes);
+    var word_array = m["word_map"];
     // console.log(latestcloud);
     $("#outcloud").empty();
 
@@ -189,46 +188,3 @@ function addWordcloud(id) {
     $("#outcloud").jQCloud(word_array);
   }
 }
-
-// Calculates the word array used for word cloud
-function generateWordArray(words) {
-  // TODO: on mobile we should limit number of words displayed to half?
-  // Create an array of word objects, each representing a word in the cloud
-  var word_array_tmp = {};
-
-  // Calculate counts for each number
-  $(words).each(function(index,value) {
-    count = word_array_tmp[value];
-    //console.log(count)
-    if (count === undefined) {
-      count = 1;
-    } else {
-      count = count + 1;
-    }
-    word_array_tmp[value] = count;
-  });
-
-  // Put it in word_array format
-  var word_array = [];
-  for (var key in word_array_tmp) {
-      var size = word_array_tmp[key];
-      if(size > 2){
-        size = size -1;
-      }
-      word_array.push({text: key, weight: size});
-  }
-
-  // We should sort desc by size.
-  for(i = 1; i < word_array.length; i++) {
-    for(j = 1; j <= i; j++) {
-      if(word_array[j]["weight"] > word_array[j-1]["weight"]) {
-        var tmp = word_array[j-1];
-        word_array[j-1] = word_array[j];
-        word_array[j] = tmp;
-      }
-    }
-  }
-
-  return word_array;
-}
-

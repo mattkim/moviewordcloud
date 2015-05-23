@@ -65,21 +65,14 @@ class WordcloudController < ApplicationController
           end
         end
 
-        # Use levenshtein dist to calculate word similarity
-        word_list = @wcg.cleanWords(quotes.split)
-        extraBoringWords = @wcg.cleanWords(title.split)
-        word_list = @wcg.removeBoringWords(word_list, extraBoringWords)
-        #exp_words = expWords(word_list)
-        #gimg = getImgURL(title)
-
-        # Fallback to legacy google image search api
+        word_map = @wcg.genWordMap(quotes, title)
         gimg = @gis.getImgURL(title, year)
 
         # Finalize struct
         movies[id] = {"id" => id,
                       "title" => title,
                       "rtlink" => rtlink,
-                      "word_list" => word_list,
+                      "word_map" => word_map,
                       "critics_score" => critics_score,
                       "poster_original" => poster_original,
                       "poster_detailed" => poster_detailed,
