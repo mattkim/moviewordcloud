@@ -181,6 +181,7 @@ function addWordcloud(id) {
     } else {
       $("#outcloud").css("height", 500);
       $("#outcloud").css("margin-top", 0);
+      word_array = word_array.slice(0, word_array.length/2);
     }
 
     $("#outcloud").css("width", $(window).width());
@@ -215,6 +216,18 @@ function generateWordArray(words) {
       }
       word_array.push({text: key, weight: size});
   }
+
+  // We should sort desc by size.
+  for(i = 1; i < word_array.length; i++) {
+    for(j = 1; j <= i; j++) {
+      if(word_array[j]["weight"] > word_array[j-1]["weight"]) {
+        var tmp = word_array[j-1];
+        word_array[j-1] = word_array[j];
+        word_array[j] = tmp;
+      }
+    }
+  }
+
   return word_array;
 }
 
