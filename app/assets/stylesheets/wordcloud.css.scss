@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+// Required to stop jquery mobile from overriding my background color
+.ui-page, .ui-body-c, .ui-page-active, .ui-overlay-c, .ui-mobile-viewport
+{
+  background: transparent !important;
+}
+
 .bodybg {
 	background-color:#FFFFFF;
 }
@@ -16,11 +22,6 @@
 
 .wccontent {
   height:300px;
-  //max-width:300px;
-}
-
-.wctitle {
-  //height:75px;
 }
 
 .wcrow {
@@ -32,10 +33,6 @@
   background-color:white;
   padding:0px;
 
-}
-
-.wcul {
-  //max-width:600px;
 }
 
 .wcimg {
@@ -55,11 +52,6 @@ img {
   height: 250px;
   cursor:pointer;
 }
-
-//img:hover
-//{
-//  background:#7CF3D3;
-//}
 
 img:active
 {
