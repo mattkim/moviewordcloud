@@ -4,6 +4,8 @@
 
 // Necessary to wait for DOM to load here.
 var movies;
+var currMovie;
+var currImg;
 var latestcloud = "#outcloud";
 
 // Carousel vars
@@ -26,46 +28,10 @@ $(function() {
 
   $(".next").click(function() {
     moveRight();
-    //currPos = $(this)[0].offsetLeft + ($(this)[0].offsetWidth / 2);
-    //if (scrolled < imgwidth - currPos) {
-    //  scrolled = scrolled + 300;
-    //  $("#movie-header").scroll();
-    //  $("#movie-header").animate({scrollLeft:scrolled},200);
-
-    //  if (scrolled < imgwidth - currPos) {
-    //    $(this).css("opacity","1");
-    //  } else {
-    //    $(this).css("opacity",".25");
-    //  }
-    //}
-
-    //if (scrolled > 0) {
-    //  $(".prev").css("opacity","1");
-    //} else {
-    //  $(".prev").css("opacity",".25");
-    //}
   });
 
   $(".prev").click(function() {
     moveLeft();
-    //currPos = $(this)[0].offsetLeft + ($(this)[0].offsetWidth / 2);
-
-    //if (scrolled > 0) {
-    //  scrolled = scrolled - 300;
-    //  $("#movie-header").scroll();
-    //  $("#movie-header").animate({scrollLeft:scrolled},200);
-    //  if (scrolled > 0) {
-    //    $(this).css("opacity","1");
-    //  } else {
-    //    $(this).css("opacity",".25");
-    //  }
-    //}
-
-    //if (scrolled < imgwidth - currPos) {
-    //  $(".next").css("opacity","1");
-    //} else {
-    //  $(".next").css("opacity",".25");
-    //}
   });
 
   $("#movie-header").on("swipeleft",function() {
@@ -107,8 +73,6 @@ function displayMovies() {
   // Add images
   Object.keys(movies).forEach(function (key) { 
     var m = movies[key];
-    //console.log(m)
-    //var imgurl = m["poster_detailed"];
     var imgurl = m["gimg"];
     var imgid = "img-" + key;
     var img = "<img id='"+ imgid +"' src='"+ imgurl +"'></img>";
@@ -129,17 +93,20 @@ function displayMovies() {
       leaveMovieData(key);
       leaveColorImg(imgid);
     });
+
+    $("#" + imgid).on("swipeleft", function() {
+      moveRight();
+    });
+    $("#" + imgid).on("swipeight", function() {
+      moveLeft();
+    });
   });
 
-  // Calculate word array
-  // TODO: should be on the server side
   var firstid = Object.keys(movies)[0];
   colorImage("img-" + firstid);
   addMovieData(firstid);
   addWordcloud(firstid);
 }
-
-var currImg;
 
 function colorImage(imgid) {
   if ($(latestcloud).length) {
@@ -162,8 +129,6 @@ function leaveColorImg(imgid) {
     $('#' + imgid).css("background","");
   }
 }
-
-var currMovie;
 
 function hoverMovieData(id) {
   if ($(latestcloud).length) {
