@@ -6,15 +6,15 @@
 var movies;
 var latestcloud = "#outcloud";
 
+// Carousel vars
+var scrolled = 0;
+var imgwidth = 0;
+var currPos = 0;
+
 // Begining of function onload
 $(function() {
   displayMovies();
   removeMovies();
-
-  scrolled = 0;
-
-  var imgwidth = 0;
-  var currPos = 0;
 
   var $imgs = $("#movie-header img");
 
@@ -25,48 +25,74 @@ $(function() {
   });
 
   $(".next").click(function() {
-    currPos = $(this)[0].offsetLeft + ($(this)[0].offsetWidth / 2);
-    if (scrolled < imgwidth - currPos) {
-      scrolled = scrolled + 300;
-      $("#movie-header").scroll();
-      $("#movie-header").animate({scrollLeft:scrolled},200);
+    moveRight();
+    //currPos = $(this)[0].offsetLeft + ($(this)[0].offsetWidth / 2);
+    //if (scrolled < imgwidth - currPos) {
+    //  scrolled = scrolled + 300;
+    //  $("#movie-header").scroll();
+    //  $("#movie-header").animate({scrollLeft:scrolled},200);
 
-      if (scrolled < imgwidth - currPos) {
-        $(this).css("opacity","1");
-      } else {
-        $(this).css("opacity",".25");
-      }
-    }
+    //  if (scrolled < imgwidth - currPos) {
+    //    $(this).css("opacity","1");
+    //  } else {
+    //    $(this).css("opacity",".25");
+    //  }
+    //}
 
-    if (scrolled > 0) {
-      $(".prev").css("opacity","1");
-    } else {
-      $(".prev").css("opacity",".25");
-    }
+    //if (scrolled > 0) {
+    //  $(".prev").css("opacity","1");
+    //} else {
+    //  $(".prev").css("opacity",".25");
+    //}
   });
 
   $(".prev").click(function() {
-    currPos = $(this)[0].offsetLeft + ($(this)[0].offsetWidth / 2);
+    moveLeft();
+    //currPos = $(this)[0].offsetLeft + ($(this)[0].offsetWidth / 2);
 
-    if (scrolled > 0) {
-      scrolled = scrolled - 300;
-      $("#movie-header").scroll();
-      $("#movie-header").animate({scrollLeft:scrolled},200);
-      if (scrolled > 0) {
-        $(this).css("opacity","1");
-      } else {
-        $(this).css("opacity",".25");
-      }
-    }
+    //if (scrolled > 0) {
+    //  scrolled = scrolled - 300;
+    //  $("#movie-header").scroll();
+    //  $("#movie-header").animate({scrollLeft:scrolled},200);
+    //  if (scrolled > 0) {
+    //    $(this).css("opacity","1");
+    //  } else {
+    //    $(this).css("opacity",".25");
+    //  }
+    //}
 
-    if (scrolled < imgwidth - currPos) {
-      $(".next").css("opacity","1");
-    } else {
-      $(".next").css("opacity",".25");
-    }
+    //if (scrolled < imgwidth - currPos) {
+    //  $(".next").css("opacity","1");
+    //} else {
+    //  $(".next").css("opacity",".25");
+    //}
+  });
+
+  $("#movie-header").on("swipeleft",function() {
+    moveRight();
+  });
+  $("#movie-header").on("swiperight",function() {
+    moveLeft();
   });
 });
 // End of function
+
+function moveLeft() {
+  if (scrolled > 0) {
+    scrolled = scrolled - 300;
+    $("#movie-header").scroll();
+    $("#movie-header").animate({scrollLeft:scrolled},200);
+  }
+}
+
+function moveRight() {
+  currPos = $(window).width();
+  if (scrolled < imgwidth - currPos) {
+    scrolled = scrolled + 300;
+    $("#movie-header").scroll();
+    $("#movie-header").animate({scrollLeft:scrolled},200);
+  }
+}
 
 // Removes the hidden movies input
 function removeMovies() {
