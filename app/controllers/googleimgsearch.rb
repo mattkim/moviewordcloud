@@ -1,4 +1,5 @@
 require 'simplehttp'
+require 'logger'
 
 class Googleimgsearch
 
@@ -16,9 +17,15 @@ class Googleimgsearch
       img_results["items"].each do |img_result|
         link = img_result["link"]
 
-        # Return the first link that gives a 200
-        if @shttp.head(link) == "200"
-          return link
+        begin
+          # Return the first link that gives a 200
+          if @shttp.head(link) == "200"
+            return link
+          else
+            Rails.logger.warn "Link inaccessible, skipping to next one..."
+          end
+        rescue Exception => ex
+          Rails.logger.error ex.message
         end
       end
     end
