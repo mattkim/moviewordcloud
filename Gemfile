@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.1'
+ruby '2.3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.1'
@@ -50,3 +50,4 @@ gem 'foundation-icons-sass-rails'
 gem "jqcloud-rails"
 
 gem 'redis'
+gem 'json', '1.8.2'
